@@ -1,15 +1,17 @@
 @import "tailwindcss";
 
 @theme {
-  --colour-border: hsl(var(--border));
-  --colour-background: hsl(var(--background));
-  --colour-foreground: hsl(var(--foreground));
+  /* Color design tokens (Tailwind v4 expects --color-* to generate utilities like bg-border, text-primary, border-card, etc.) */
+  --color-border: hsl(var(--border));
+  --color-background: hsl(var(--background));
+  --color-foreground: hsl(var(--foreground));
 
-  --colour-primary: hsl(var(--primary));
-  --colour-primary-foreground: hsl(var(--primary-foreground));
+  --color-primary: hsl(var(--primary));
+  --color-primary-foreground: hsl(var(--primary-foreground));
 
-  --colour-card: hsl(var(--card));
+  --color-card: hsl(var(--card));
 
+  /* Animation tokens */
   --animate-float: float 6s ease-in-out infinite;
   --animate-pulse-subtle: pulse-subtle 4s ease-in-out infinite;
   --animate-fade-in: fade-in 0.7s ease-in forwards;
@@ -69,6 +71,16 @@
     --primary-foreground: 213 31% 91%;
     --border: 217 33% 20%;
  }
+ * {
+    @apply border-border;
+ }
+ html {
+  @apply scroll-smooth;
+ }
+ body {
+  @apply bg-background text-primary-foreground transition-colors duration-300;
+  font-feature-settings:"rlig" 1,"calt" 1;
+ }
 }
 
 @utility container {
@@ -120,4 +132,11 @@
 @utility meteor {
   @apply absolute bg-linear-to-r from-white via-white to-transparent rounded-full;
   box-shadow: 0 0 10px 5px rgba(255,255,255,0.3);
+}
+
+#root {
+  max: width 100%;
+  margin: 0 auto;
+  padding: 0 ;
+  text-align: center;
 }
