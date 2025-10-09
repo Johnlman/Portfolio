@@ -61,7 +61,7 @@
 
     --card : 0 0% 100%;
 
-    --primary: 250 47% 60%;
+    --primary: 220 70% 50%;
     --primary-foreground: 210 40% 98%;
 
     --border: 214 32% 91%;
@@ -71,7 +71,7 @@
     --background: 222 47% 4%;
     --foreground: 213 31% 91%;
     --card: 222 47% 8%;
-    --primary: 250 65% 65%;
+    --primary: 220 70% 50%;
     --primary-foreground: 213 31% 91%;
     --border: 217 33% 20%;
  }
@@ -124,16 +124,46 @@
   border: 1px solid transparent;
 }  
 @utility cosmic-button{
-  @apply px-6 py-2 rounded-full text-primary-foreground font-medium
-  transition-all duration-300 hover:shadow-[0_0_10px_rgba(139,92,246,0.5)]
-  hover:scale-105 active:scale-95;
-}  
-
-@utility star {
-  @apply absolute rounded-full bg-white;
-  box-shadow: 0 0 10px 2px rgba(255,255,255,0.4)
+  @apply px-6 py-2 rounded-full text-primary-foreground font-medium relative overflow-hidden select-none inline-flex items-center justify-center
+  transition-all duration-300 hover:scale-105 active:scale-95;
+  /* Solid / gradient background ensuring not translucent */
+  background: linear-gradient(135deg, hsl(var(--primary)) 0%, hsl(var(--primary) / 0.85) 60%, hsl(var(--primary) / 0.75) 100%);
+  opacity: 1 !important;
+  /* Subtle border using existing border token */
+  border: 1px solid hsl(var(--border) / 0.3);
+  box-shadow: 0 2px 4px -1px rgba(0,0,0,0.25), 0 0 6px 2px hsl(var(--primary) / 0.35);
 }
 @layer utilities {
+  .cosmic-button::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit; /* ensure pseudo matches rounded-full */
+    background: radial-gradient(circle at 30% 20%, hsl(var(--primary-foreground) / 0.28), transparent 70%);
+    mix-blend-mode: overlay;
+    pointer-events: none;
+    opacity: 0.85;
+  }
+  .cosmic-button:focus-visible {
+    outline: 2px solid hsl(var(--primary-foreground) / 0.8);
+    outline-offset: 2px;
+  }
+  .cosmic-button:hover {
+    border-color: hsl(var(--primary));
+    box-shadow: 0 0 10px hsl(var(--primary) / 0.55), 0 0 18px hsl(var(--primary) / 0.35);
+  }
+  .cosmic-button:disabled {
+    @apply opacity-50 pointer-events-none;
+  }
+}
+
+@layer utilities {
+  .star {
+    position: absolute;
+    border-radius: 9999px;
+    background: #fff;
+    box-shadow: 0 0 10px 2px rgba(255,255,255,0.4);
+  }
   @keyframes twinkle {
     0%, 100% { opacity: var(--twinkle-min, 0.2); transform: scale(0.85); }
     50% { opacity: var(--twinkle-max, 1); transform: scale(1); }
@@ -142,7 +172,7 @@
 }
 @layer utilities {
   .meteor {
-    @apply absolute;
+    position: absolute;
     width: var(--meteor-size, 10px);
     height: var(--meteor-size, 10px);
     border-radius: 50%;
@@ -192,7 +222,7 @@
   .meteor.fiery { animation: meteor-pulse 0.9s ease-in-out infinite alternate; }
   @keyframes meteor-pulse { 0% { filter: brightness(1) saturate(1); } 100% { filter: brightness(1.25) saturate(1.35); } }
   .meteor-triangle {
-    @apply absolute;
+    position: absolute;
     width: 0; height: 0;
     border-left: var(--triangle-size, 16px) solid #fff;
     border-top: var(--triangle-size, 8px) solid transparent;
