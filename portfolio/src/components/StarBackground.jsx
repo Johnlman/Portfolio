@@ -3,17 +3,29 @@ import {useState, useEffect, useRef} from "react";
 export const StarBackground = () => {
     const [stars, setStars] = useState([]);
     const [meteors, setMeteors] = useState([]);
-    const [isDark, setIsDark] = useState(() => document.documentElement.classList.contains('dark'));
+    const [isDark, setIsDark] = useState(() => {
+        if (typeof window === 'undefined') return false;
+        const stored = localStorage.getItem('theme');
+        if (stored === 'dark') {
+            // ensure html has class (in case other components haven't run yet)
+            document.documentElement.classList.add('dark');
+            return true;
+        }
+        return document.documentElement.classList.contains('dark');
+    });
     const observerRef = useRef(null);
     useEffect(() => {
         generateStars();
-        if (isDark) generateMeteors();
+        // On first mount, if dark per localStorage ensure meteors exist
+        if (isDark && meteors.length === 0) {
+            generateMeteors();
+        }
 
         // Observe class changes on <html> to toggle meteors when theme changes
         observerRef.current = new MutationObserver((mutations) => {
             for (const m of mutations) {
                 if (m.type === 'attributes' && m.attributeName === 'class') {
-                    const darkNow = document.documentElement.classList.contains('dark');
+                    const darkNow = document.documentElement.classList.contains('dark') || localStorage.getItem('theme') === 'dark';
                     setIsDark(darkNow);
                     if (darkNow && meteors.length === 0) {
                         generateMeteors();
@@ -81,7 +93,7 @@ export const StarBackground = () => {
                             className="meteor animate-meteor"
                             style={{
                                 width: `${meteor.size * Math.random()* 50 +20}px`,
-                                height: `${meteor.size * Math.random()* 1.6 +2}px`,
+                                height: `${meteor.size * Math.random()* 4 +2}px`,
                                 left: `${meteor.x}%`,
                                 top: `${meteor.y}%`,
                                 animationDelay: `${meteor.delay}s`,
