@@ -65,14 +65,14 @@ export const StarBackground = () => {
         const newMeteors = [];
         for (let i = 0; i < numberOfMeteors; i++) {
             // Choose spawn region: top band (full width, top 20%) or left band (left 20%, full height)
-            const region = Math.random() < 0.55 ? 'top' : 'left';
+            const region = Math.random() < 0.65 ? 'top' : 'left';
             let xPercent; let yPercent;
             if (region === 'top') {
-                xPercent = Math.random() * 80;   // anywhere across width
+                xPercent = Math.random() * 90;   // anywhere across width
                 yPercent = Math.random() * 10;    // top 20%
             } else { // left region
                 xPercent = Math.random() * 10;    // leftmost 20%
-                yPercent = Math.random() * 80;   // anywhere vertically
+                yPercent = Math.random() * 90;   // anywhere vertically
             }
             const size = Math.random() * 2 + 1;
             // Angle idea: top spawns travel diagonally down-left, left spawns travel slightly down-right
