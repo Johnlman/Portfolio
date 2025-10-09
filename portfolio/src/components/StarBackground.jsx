@@ -20,7 +20,10 @@ export const StarBackground = () => {
         if (isDark && meteors.length === 0) {
             generateMeteors();
         }
-
+        const handleResize = () => {
+            generateStars();
+        }
+        window.addEventListener('resize', handleResize);
         // Observe class changes on <html> to toggle meteors when theme changes
         observerRef.current = new MutationObserver((mutations) => {
             for (const m of mutations) {
@@ -38,6 +41,7 @@ export const StarBackground = () => {
         observerRef.current.observe(document.documentElement, { attributes: true });
         return () => {
             observerRef.current?.disconnect();
+            window.removeEventListener('resize', handleResize);
         };
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
