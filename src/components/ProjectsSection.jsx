@@ -55,8 +55,9 @@ const projects = [
         title: "Portfolio Website",
         description:
             "A personal portfolio website built with React and Tailwind CSS, showcasing my projects, skills, and experience. The site features a responsive design, smooth scrolling, and interactive elements to enhance user engagement. It is optimized for performance and SEO, ensuring fast load times and better visibility in search engines.",
-        imageUrl: "/projects/Portfolio_Website.png",
+        imageUrl: "/projects/Portfolio.png",
         tags: ["React", "Tailwind CSS", "JavaScript", "HTML", "CSS"],
+        githubUrl: "https://github.com/Johnlman/Portfolio"
     },
 ];
 
