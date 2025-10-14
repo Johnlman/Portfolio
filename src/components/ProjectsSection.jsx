@@ -50,6 +50,13 @@ const projects = [
             "A 2D survival game developed in C and C++ using OpenGL, featuring real-time rendering, collision detection, and player movement with velocity-based physics. The project implemented a modular game loop architecture and efficient memory management for performance optimization. Core mechanics such as resource collection, health tracking, and enemy AI were designed to create engaging and dynamic gameplay.",
         imageUrl: "/projects/All_In.png",
         tags: ["C", "C++", "OpenGL", "Game Development"],
+    }, {
+        id: 7,
+        title: "Portfolio Website",
+        description:
+            "A personal portfolio website built with React and Tailwind CSS, showcasing my projects, skills, and experience. The site features a responsive design, smooth scrolling, and interactive elements to enhance user engagement. It is optimized for performance and SEO, ensuring fast load times and better visibility in search engines.",
+        imageUrl: "/projects/Portfolio_Website.png",
+        tags: ["React", "Tailwind CSS", "JavaScript", "HTML", "CSS"],
     },
 ];
 
