@@ -58,7 +58,8 @@ const projects = [
         imageUrl: "/projects/Portfolio.png",
         tags: ["React", "Tailwind CSS", "JavaScript", "HTML", "CSS"],
         githubUrl: "https://github.com/Johnlman/Portfolio"
-    },
+    }, 
+
 ];
 
 export const ProjectSection = () => {

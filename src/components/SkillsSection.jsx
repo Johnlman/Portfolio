@@ -2,13 +2,13 @@ import { act, useState } from 'react';
 import { cn } from "@/lib/utils";
 const skills = [
   // Languages
-  { name: 'Java', level: 'Advanced', category: 'language' },
-  { name: 'C++', level: 'Advanced', category: 'language' },
-  { name: 'C', level: 'Advanced', category: 'language' },
+  { name: 'Java', level: 'Intermediate', category: 'language' },
+  { name: 'C++', level: 'Intermediate', category: 'language' },
+  { name: 'C', level: 'Intermediate', category: 'language' },
   { name: 'Python', level: 'Advanced', category: 'language' },
-  { name: 'Assembly', level: 'Intermediate', category: 'language' },
+  { name: 'Assembly', level: 'Beginner', category: 'language' },
   { name: 'JavaScript', level: 'Advanced', category: 'language' },
-  { name: 'TypeScript', level: 'Intermediate', category: 'language' },
+  { name: 'TypeScript', level: 'Advanced', category: 'language' },
   { name: 'SQL', level: 'Intermediate', category: 'language' },
   { name: 'NoSQL', level: 'Intermediate', category: 'language' },
   { name: 'HTML', level: 'Advanced', category: 'frontend' },
